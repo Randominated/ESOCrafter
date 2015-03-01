@@ -1,0 +1,29 @@
+Tabbed interface:
+  Left-hand tabs for sections
+  Top tabs for subsections
+SQLite-implemented local database for saving and managing items
+
+Main feature for indev-1:
+Crafting research manager
+  This is the first main section
+
+subsections for each crafting station; Forge, Clothier and Woodworker
+Table showing combinations of items research progress vs traits
+  Three types of information displayed:
+    Amount of item-trait combos in inventory/bank
+    Whether trait has been researched for item
+    Whether research is in progress for an item's trait
+      secodary objective is to create timers to show how much time is left on research
+      secondary objective is to make timers toggleable to show date and time of completion
+GUI-area for adding item to database, layout the same as in-game
+  attributes needed:
+    item id (for database, tracking purposes)
+    Item type
+    Item name
+    damage/armor
+    level
+    value
+    enchantment type
+    enchantment value
+    trait type
+    trait value
