@@ -20,9 +20,16 @@ namespace ESOCrafter
     /// </summary>
     public partial class MainWindow : Window
     {
+        Logic l;
         public MainWindow()
         {
             InitializeComponent();
+            l = new Logic();
+        }
+
+        private void A_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(l.SQLiteTest());
         }
     }
 }
