@@ -2,6 +2,7 @@ Tabbed interface:
   Left-hand tabs for sections
   Top tabs for subsections
 SQLite-implemented local database for saving and managing items
+  secondary: characters saved in database for mule tracking (add bank as character)
 
 Main feature for indev-1:
 Crafting research manager
@@ -14,7 +15,7 @@ Table showing combinations of items research progress vs traits
     Whether trait has been researched for item
     Whether research is in progress for an item's trait
       secodary objective is to create timers to show how much time is left on research
-      secondary objective is to make timers toggleable to show date and time of completion
+      secondary objective is to make timers toggleable to show date and time of completion on a cell-level
 GUI-area for adding item to database, layout the same as in-game
   attributes needed:
     item id (for database, tracking purposes)
@@ -27,3 +28,4 @@ GUI-area for adding item to database, layout the same as in-game
     enchantment value
     trait type
     trait value
+    secondary: whether item is in bank or which characters' inventory (muled or main)
