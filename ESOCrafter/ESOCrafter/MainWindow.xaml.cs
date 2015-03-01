@@ -31,5 +31,10 @@ namespace ESOCrafter
         {
             MessageBox.Show(l.SQLiteTest());
         }
+
+        private void Clr_Db_Click(object sender, RoutedEventArgs e)
+        {
+            l.ClrDb();
+        }
     }
 }

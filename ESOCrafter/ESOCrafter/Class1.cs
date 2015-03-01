@@ -7,6 +7,9 @@ using System.Data.SQLite;
 
 namespace ESOCrafter
 {
+    /// <summary>
+    /// Non-GUI code for ESOCrafter, including interfacing logic for the SQLite database.
+    /// </summary>
     class Logic
     {
         public Logic()
@@ -26,7 +29,7 @@ namespace ESOCrafter
                                       )";
 
             // Create the file which will be hosting our database
-            System.Data.SQLite.SQLiteConnection.CreateFile("databaseFile.db3");
+            //System.Data.SQLite.SQLiteConnection.CreateFile("databaseFile.db3");
             using (System.Data.SQLite.SQLiteConnection con = new System.Data.SQLite.SQLiteConnection("data source=databaseFile.db3"))
             {
                 using (System.Data.SQLite.SQLiteCommand com = new System.Data.SQLite.SQLiteCommand(con))
@@ -53,8 +56,8 @@ namespace ESOCrafter
                         while (reader.Read())
                         {
                             // Display the value of the key and value column for every row
-                            Console.WriteLine(reader["Key"] + " : " + reader["Value"]);
-                            popupContents = popupContents + reader["Key"] + " : " + reader["Value"] + "\n";
+                            Console.WriteLine(reader["ID"] + " - " + reader["Key"] + " : " + reader["Value"]);
+                            popupContents = popupContents + reader["ID"] + " - " + reader["Key"] + " : " + reader["Value"] + "\n";
                         }
                     }
                     // Close the connection to the database
@@ -62,6 +65,11 @@ namespace ESOCrafter
                 }
             }
             return popupContents;
+        }
+
+        internal void ClrDb()
+        {
+            System.Data.SQLite.SQLiteConnection.CreateFile("databaseFile.db3");
         }
     }
 }

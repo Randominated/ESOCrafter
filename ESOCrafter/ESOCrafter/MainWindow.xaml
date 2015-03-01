@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button Name="A_Button" Click="A_Button_Click">hello</Button>
+        <Button Name="A_Button" Click="A_Button_Click" Margin="0,0,0,266">hello</Button>
+        <Button Name="Clr_Db" Margin="0,145,0,0" Click="Clr_Db_Click">Clear Database</Button>
     </Grid>
 </Window>
