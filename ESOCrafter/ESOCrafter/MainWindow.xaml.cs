@@ -29,12 +29,30 @@ namespace ESOCrafter
 
         private void A_Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(l.SQLiteTest());
+            //MessageBox.Show(l.SQLiteTest());
+            The_text.Text = l.SQLiteTest();
         }
 
         private void Clr_Db_Click(object sender, RoutedEventArgs e)
         {
             l.ClrDb();
+            ClearText();
         }
+
+        private void CloseCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void CloseCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void ClearText()
+        {
+            The_text.Text = "";
+        }
+
     }
 }
