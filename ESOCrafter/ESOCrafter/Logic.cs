@@ -17,6 +17,11 @@ namespace ESOCrafter
             Console.WriteLine("Logic initiated");
         }
 
+        private void initSQLite()
+        {
+
+        }
+
         public string SQLiteTest()
         {
             string popupContents = "";
@@ -67,9 +72,15 @@ namespace ESOCrafter
             return popupContents;
         }
 
-        internal void ClrDb()
+        public void ClrDb()
         {
             System.Data.SQLite.SQLiteConnection.CreateFile("databaseFile.db3");
+        }
+
+        public string Eq_test()
+        {
+            Equippable e = new Equippable("dagger", 1337, 666, 9999, "Murder damage", 9000, "Perfect", 7, 0);
+            return "" + e;
         }
     }
 }

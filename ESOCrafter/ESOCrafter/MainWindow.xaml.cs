@@ -49,10 +49,19 @@ namespace ESOCrafter
             e.CanExecute = true;
         }
 
+        private void TestCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            The_text.Text = l.Eq_test();
+        }
+
+        private void TestCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
         private void ClearText()
         {
             The_text.Text = "";
         }
-
     }
 }
