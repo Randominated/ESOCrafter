@@ -8,18 +8,29 @@ using System.Data.SQLite;
 namespace ESOCrafter
 {
     /// <summary>
-    /// Non-GUI code for ESOCrafter, including interfacing logic for the SQLite database.
+    /// Non-GUI code for ESOCrafter, including database I/O logic for SQLite.
     /// </summary>
     class Logic
     {
+        public string DBFileLocation { get; private set; }
+        private SQLiteConnection DBConnection;
+
         public Logic()
         {
-            Console.WriteLine("Logic initiated");
+            Console.WriteLine("Logic initiated"); //Debug
+            //TODO load metadata file. Meta file contains path(s) to database files.
         }
 
-        private void initSQLite()
+        private int CreateDBFile(string path, string filename)
         {
+            //TODO unsure what variables can be gotten from new file dialog. Adapt accordingly!
+            return -1;
+        }
 
+        private void initDBConnection()
+        {
+            DBConnection = new SQLiteConnection(DBFileLocation);
+            //TODO check where to call this method. Must be after successful load of metadata.
         }
 
         public string SQLiteTest()
@@ -72,13 +83,20 @@ namespace ESOCrafter
             return popupContents;
         }
 
+        private void CheckDBFileCompatibility()
+        {
+            //TODO needs a way to check loaded db3 file for compatibility with get methods. If incompatible block only reads until tables are made?
+        }
+
         public void ClrDb()
         {
             System.Data.SQLite.SQLiteConnection.CreateFile("databaseFile.db3");
+            //TODO rewrite, silent newfile is asshole move. New file or delete button?
         }
 
         public string Eq_test()
         {
+            //testing internal methods for Equippable class. Only debug use. Cleanup after.
             Equippable e = new Equippable("dagger", 1337, 666, 9999, "Murder damage", 9000, "Perfect", 7, 0);
             return "" + e;
         }

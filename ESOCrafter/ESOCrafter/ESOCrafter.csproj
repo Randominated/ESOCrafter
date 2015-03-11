@@ -78,6 +78,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Metadata.cs" />
     <Compile Include="Logic.cs" />
     <Compile Include="Equippable.cs" />
     <Compile Include="CustomCommands.cs" />

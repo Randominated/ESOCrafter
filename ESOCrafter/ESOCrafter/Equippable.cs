@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ESOCrafter
 {
+    /// <summary>
+    /// Wrapper class for an Equippable type used to encapsulate variables. Provides separate data values and an array containing all.
+    /// </summary>
     public class Equippable
     {
         public int? Equip_id { get; set; }
@@ -19,16 +22,16 @@ namespace ESOCrafter
         public int Trait_val { get; set; }
         public int Char_type { get; set; }
 
-        public Object []v = new Object[10];
+        public Object []dataArray = new Object[10];
 
-        public Equippable(Object []v){
-            if (v.Length != this.v.Length)
+        public Equippable(Object []dataArray){
+            if (dataArray.Length != this.dataArray.Length)
             {
                 throw new IndexOutOfRangeException();
             }
             else
             {
-                Store(v);
+                Store(dataArray);
             }
         }
 
@@ -42,29 +45,34 @@ namespace ESOCrafter
             Store(Listify(null, Type, Attribute_val, Item_level, Coin_val, Ench_type, Ench_val, Trait_type, Trait_val, Char_type));
         }
 
-        private void Store(object[] v)
+        private void Store(object[] dataArray)
         {
-            this.v = v;
-            this.Equip_id = (int?)v[0];
-            this.Type = (string)v[1];
-            this.Attribute_val = (int)v[2];
-            this.Item_level = (int)v[3];
-            this.Coin_val = (int)v[4];
-            this.Ench_type = (string)v[5];
-            this.Ench_val = (int)v[6];
-            this.Trait_type = (string)v[7];
-            this.Trait_val = (int)v[8];
-            this.Char_type = (int)v[9];
+            this.dataArray = dataArray;
+            this.Equip_id = (int?)dataArray[0];
+            this.Type = (string)dataArray[1];
+            this.Attribute_val = (int)dataArray[2];
+            this.Item_level = (int)dataArray[3];
+            this.Coin_val = (int)dataArray[4];
+            this.Ench_type = (string)dataArray[5];
+            this.Ench_val = (int)dataArray[6];
+            this.Trait_type = (string)dataArray[7];
+            this.Trait_val = (int)dataArray[8];
+            this.Char_type = (int)dataArray[9];
         }
 
-        private object[] Listify(params object[] v)
+        private object[] Listify(params object[] objectsToArray)
         {
-            return v;
+            return objectsToArray;
         }
 
         public override string ToString()
         {
-            return "Database id is: " + Equip_id +
+            string equipIDCheck = Equip_id.ToString();
+            if (Equip_id == null)
+            {
+                equipIDCheck = "No Database id, item not stored!";
+            }
+            return "Database id is: " + equipIDCheck +
                 "\nEquip type is: " + Type +
                 "\nEquip has attribute of: " + Attribute_val + 
                 "\nEquip level is: " + Item_level +
