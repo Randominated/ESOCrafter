@@ -23,14 +23,72 @@ namespace ESOCrafter
 
         private int CreateDBFile(string path, string filename)
         {
+            //TODO let user select whether to create database file or keep it in memory?
             //TODO unsure what variables can be gotten from new file dialog. Adapt accordingly!
             return -1;
         }
 
-        private void initDBConnection()
+        private void initDBConnection(string file)
         {
-            DBConnection = new SQLiteConnection(DBFileLocation);
+            //TODO BAD PRACTICE DO
+            DBConnection = new SQLiteConnection("data source=" + file);
             //TODO check where to call this method. Must be after successful load of metadata.
+            //TODO SQLiteConnection constructor sets up several things. Check conditions, maybe load from metadata.
+        }
+
+
+        public string TEMPCreateDB()
+        {
+            //TODO needs total refactor, this revision is only for testing segmentation of the SQLite example used to learn from.
+            //TODO: This string is supposed to load from a packaged SQL file. Packaged/zipped to make sure that the SQL corresponds to the .db3 file. Package includes .meta file.
+            string createTableQuery = @"-- tables
+                                        -- Table: characters
+                                        CREATE TABLE characters (
+                                            char_id integer NOT NULL  PRIMARY KEY AUTOINCREMENT,
+                                            char_type integer NOT NULL,
+                                            char_name varchar(255) NOT NULL,
+                                            inventory_size integer NOT NULL,
+                                            isMule boolean NOT NULL,
+                                            isBank boolean NOT NULL
+                                        );
+                                        -- Table: equips
+                                        CREATE TABLE equips (
+                                            equip_id integer NOT NULL  PRIMARY KEY AUTOINCREMENT,
+                                            type varchar(255) NOT NULL,
+                                            attribute_val integer NOT NULL,
+                                            item_level integer NOT NULL,
+                                            coin_val integer NOT NULL,
+                                            ench_type varchar(255) NOT NULL,
+                                            ench_val integer NOT NULL,
+                                            trait_type varchar(255) NOT NULL,
+                                            trait_val integer NOT NULL,
+                                            characters_char_id integer NOT NULL,
+                                            FOREIGN KEY (characters_char_id) REFERENCES characters (char_id)
+                                        );
+                                        -- Table: researches
+                                        CREATE TABLE researches (
+                                            res_id integer NOT NULL  PRIMARY KEY AUTOINCREMENT,
+                                            trait varchar(255) NOT NULL,
+                                            bench_type integer NOT NULL,
+                                            time_start datetime NOT NULL,
+                                            time_end datetime NOT NULL,
+                                            init_equip_id integer NOT NULL,
+                                            characters_char_id integer NOT NULL,
+                                            FOREIGN KEY (characters_char_id) REFERENCES characters (char_id)
+                                        );
+                                        -- views
+                                        -- View: v_char_inventory
+                                        CREATE VIEW v_char_inventory AS
+                                        SELECT * FROM equips;
+                                        -- End of file.";
+
+            DBFileLocation = "testDB.db3";
+            initDBConnection(DBFileLocation);
+            using (DBConnection) {
+
+            }
+
+            return "";
         }
 
         public string SQLiteTest()
