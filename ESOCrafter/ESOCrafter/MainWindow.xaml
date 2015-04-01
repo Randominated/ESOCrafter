@@ -20,7 +20,8 @@
         <StackPanel Grid.ColumnSpan="3">
             <Menu VerticalAlignment="Top" IsMainMenu="True">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_Close" Command="Close"/>
+                    <MenuItem Header="_New DB" Command="New"/>
+                <MenuItem Header="_Close" Command="Close"/>
                     </MenuItem>
                 <MenuItem Header="_Help">
                     <MenuItem Header="_About"/>
