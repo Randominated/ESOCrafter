@@ -5,7 +5,9 @@
         Title="MainWindow" Height="350" Width="525">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommand_Executed" CanExecute="CloseCommand_CanExecute" />
+        <CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed" CanExecute="NewCommand_CanExecute" />
         <CommandBinding Command="self:CustomCommands.TestCommand" Executed="TestCommand_Executed" CanExecute="TestCommand_CanExecute"/>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="OpenCommand_Executed" CanExecute="OpenCommand_CanExecute" />
     </Window.CommandBindings>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,8 +23,10 @@
             <Menu VerticalAlignment="Top" IsMainMenu="True">
                 <MenuItem Header="_File">
                     <MenuItem Header="_New DB" Command="New"/>
-                <MenuItem Header="_Close" Command="Close"/>
-                    </MenuItem>
+                    <MenuItem Header="Save to file" IsEnabled="false"/>
+                    <MenuItem Header="Open DB File" Command="Open"/>
+                    <MenuItem Header="_Close" Command="Close"/>
+                </MenuItem>
                 <MenuItem Header="_Help">
                     <MenuItem Header="_About"/>
                     <MenuItem Header="_Test!" Command="self:CustomCommands.TestCommand"/>

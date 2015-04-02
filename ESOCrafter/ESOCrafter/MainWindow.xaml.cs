@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace ESOCrafter
 {
     /// <summary>
@@ -39,15 +40,7 @@ namespace ESOCrafter
             ClearText();
         }
 
-        private void CloseCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void CloseCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
+        
 
         private void TestCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -55,6 +48,37 @@ namespace ESOCrafter
         }
 
         private void TestCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("New command executed, next up: new file dialog!"); //DEBUG
+            //TODO there might not be a new file dialog, can maybe use save file dialog?
+        }
+
+        private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Open command executed, next up: open file dialog!"); //DEBUG
+        }
+
+        private void OpenCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CloseCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void CloseCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }

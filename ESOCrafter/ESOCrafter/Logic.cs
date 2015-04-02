@@ -13,11 +13,14 @@ namespace ESOCrafter
     class Logic
     {
         public string DBFileLocation { get; private set; }
+        public bool isFileLoaded { get; private set; }
+        public bool isDBInMemory { get; private set; }
         private SQLiteConnection DBConnection;
 
         public Logic()
         {
             Console.WriteLine("Logic initiated"); //Debug
+            isFileLoaded = false;
             //TODO load metadata file. Meta file contains path(s) to database files.
         }
 
@@ -26,6 +29,20 @@ namespace ESOCrafter
             //TODO let user select whether to create database file or keep it in memory?
             //TODO unsure what variables can be gotten from new file dialog. Adapt accordingly!
             return -1;
+        }
+
+        private int LoadDBFile(string path, string filename)
+        {
+            //TODO use load dialog!
+            //TODO notes from CreateDBFile apply here!
+            return -1;
+        }
+
+        private int SaveDBFile(string path, string filename)
+        {
+            //TODO only used with in-memory databases, invisible otherwise
+            return -1;
+
         }
 
         private void initDBConnection(string file)
