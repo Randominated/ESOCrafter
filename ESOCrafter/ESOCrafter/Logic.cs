@@ -12,45 +12,54 @@ namespace ESOCrafter
     /// </summary>
     class Logic
     {
-        public string DBFileLocation { get; private set; }
-        public bool isFileLoaded { get; private set; }
-        public bool isDBInMemory { get; private set; }
-        private SQLiteConnection DBConnection;
+        public bool IsFileLoaded { get; private set; }
+        public string DBPackageLocation { get; private set; }
+        public bool IsDBInMemory { get; private set; }
+        //private SQLiteConnection DBConnection;
 
         public Logic()
         {
-            Console.WriteLine("Logic initiated"); //Debug
-            isFileLoaded = false;
+            IsFileLoaded = false;
             //TODO load metadata file. Meta file contains path(s) to database files.
         }
 
         private int CreateDBFile(string path, string filename)
         {
-            //TODO let user select whether to create database file or keep it in memory?
+            //TODO let user select whether to create database file or keep it in memory
             //TODO unsure what variables can be gotten from new file dialog. Adapt accordingly!
+            //TODO There is no new file dialog, use save file dialog instead!
             return -1;
         }
 
-        private int LoadDBFile(string path, string filename)
+        public int LoadDBFile(string path)
         {
             //TODO use load dialog!
             //TODO notes from CreateDBFile apply here!
+            Console.Write(path);
             return -1;
         }
 
         private int SaveDBFile(string path, string filename)
         {
-            //TODO only used with in-memory databases, invisible otherwise
+            //TODO only used with in-memory databases, inactive otherwise
             return -1;
 
         }
 
+        public int CloseDBFile()
+        {
+            //TODO use method to close file gracefully, not sure if neccessary
+            return -1;
+        }
+
         private void initDBConnection(string file)
         {
-            //TODO BAD PRACTICE DO
-            DBConnection = new SQLiteConnection("data source=" + file);
-            //TODO check where to call this method. Must be after successful load of metadata.
             //TODO SQLiteConnection constructor sets up several things. Check conditions, maybe load from metadata.
+            //TODO check where to call this method. Must be after successful load of metadata.
+            using (SQLiteConnection DBConnection = new SQLiteConnection("data source=" + file))
+            {
+                //insert all method calls using DBConnection here
+            }
         }
 
 
@@ -99,11 +108,11 @@ namespace ESOCrafter
                                         SELECT * FROM equips;
                                         -- End of file.";
 
-            DBFileLocation = "testDB.db3";
-            initDBConnection(DBFileLocation);
-            using (DBConnection) {
-
-            }
+            DBPackageLocation = "testDB.db3";
+            initDBConnection(DBPackageLocation);
+            //using (DBConnection) {
+            //
+            //}
 
             return "";
         }

@@ -23,7 +23,7 @@
             <Menu VerticalAlignment="Top" IsMainMenu="True">
                 <MenuItem Header="_File">
                     <MenuItem Header="_New DB" Command="New"/>
-                    <MenuItem Header="Save to file" IsEnabled="false"/>
+                    <MenuItem Header="Save to file" Command="Save"/>
                     <MenuItem Header="Open DB File" Command="Open"/>
                     <MenuItem Header="_Close" Command="Close"/>
                 </MenuItem>

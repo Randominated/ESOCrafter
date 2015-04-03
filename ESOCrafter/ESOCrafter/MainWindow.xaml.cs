@@ -30,7 +30,6 @@ namespace ESOCrafter
 
         private void A_Button_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show(l.SQLiteTest());
             The_text.Text = l.SQLiteTest();
         }
 
@@ -39,8 +38,6 @@ namespace ESOCrafter
             l.ClrDb();
             ClearText();
         }
-
-        
 
         private void TestCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -65,7 +62,26 @@ namespace ESOCrafter
 
         private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("Open command executed, next up: open file dialog!"); //DEBUG
+            //string loadPath;
+            MessageBoxResult loadConfirm = MessageBox.Show("LOCALIZE load file confirmation prompt", "LOCALIZE Confirm file load", MessageBoxButton.YesNo);
+            if (loadConfirm == MessageBoxResult.Yes)
+            {
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.InitialDirectory = "";
+                dlg.DefaultExt = ".txt"; //TODO change to capsule format when complete!
+                dlg.Filter = "Text documents (.txt)|*.txt"; //TODO adapt for capsule format when complete!
+                dlg.Multiselect = false;
+                bool? result = dlg.ShowDialog();
+                if (result == true)
+                {
+                    if (l.IsFileLoaded == true)
+                    {
+                        l.CloseDBFile();
+                    }
+                    l.LoadDBFile(dlg.FileName);
+                    //loadPath = dlg.FileName;
+                }
+            }
         }
 
         private void OpenCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
