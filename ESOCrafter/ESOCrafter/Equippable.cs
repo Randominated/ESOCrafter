@@ -9,18 +9,21 @@ namespace ESOCrafter
     /// <summary>
     /// Wrapper class for an Equippable type used to encapsulate variables. Provides separate data values and an array containing all.
     /// </summary>
+
+    //TODO: Make a wrapper class to be extended with common methods for all wrapper classes, for cleaner code!
+
     public class Equippable
     {
         public int? Equip_id { get; set; }
-        public string Type { get; set; }
+        public string Equip_q { get; set; }
+        public string Equip_type { get; set; }
         public int Attribute_val { get; set; }
         public int Item_level { get; set; }
         public int Coin_val { get; set; }
         public string Ench_type { get; set; }
         public int Ench_val { get; set; }
         public string Trait_type { get; set; }
-        public int Trait_val { get; set; }
-        public int Char_type { get; set; }
+        public int Char_id { get; set; }
 
         public Object []dataArray = new Object[10];
 
@@ -35,29 +38,29 @@ namespace ESOCrafter
             }
         }
 
-        public Equippable(int Equip_id, string Type, int Attribute_val, int Item_level, int Coin_val, string Ench_type, int Ench_val, string Trait_type, int Trait_val, int Char_type)
+        public Equippable(int Equip_id, string Equip_q, string Equip_type, int Attribute_val, int Item_level, int Coin_val, string Ench_type, int Ench_val, string Trait_type, int Char_id)
         {
-            Store(Listify(Equip_id, Type, Attribute_val, Item_level, Coin_val, Ench_type, Ench_val, Trait_type, Trait_val, Char_type));
+            Store(Listify(Equip_id, Equip_q, Equip_type, Attribute_val, Item_level, Coin_val, Ench_type, Ench_val, Trait_type, Char_id));
         }
 
-        public Equippable(string Type, int Attribute_val, int Item_level, int Coin_val, string Ench_type, int Ench_val, string Trait_type, int Trait_val, int Char_type)
+        public Equippable(string Equip_q, string Equip_type, int Attribute_val, int Item_level, int Coin_val, string Ench_type, int Ench_val, string Trait_type, int Char_id)
         {
-            Store(Listify(null, Type, Attribute_val, Item_level, Coin_val, Ench_type, Ench_val, Trait_type, Trait_val, Char_type));
+            Store(Listify(null, Equip_q, Equip_type, Attribute_val, Item_level, Coin_val, Ench_type, Ench_val, Trait_type, Char_id));
         }
 
         private void Store(object[] dataArray)
         {
             this.dataArray = dataArray;
             this.Equip_id = (int?)dataArray[0];
-            this.Type = (string)dataArray[1];
-            this.Attribute_val = (int)dataArray[2];
-            this.Item_level = (int)dataArray[3];
-            this.Coin_val = (int)dataArray[4];
-            this.Ench_type = (string)dataArray[5];
-            this.Ench_val = (int)dataArray[6];
-            this.Trait_type = (string)dataArray[7];
-            this.Trait_val = (int)dataArray[8];
-            this.Char_type = (int)dataArray[9];
+            this.Equip_q = (string)dataArray[1];
+            this.Equip_type = (string)dataArray[2];
+            this.Attribute_val = (int)dataArray[3];
+            this.Item_level = (int)dataArray[4];
+            this.Coin_val = (int)dataArray[5];
+            this.Ench_type = (string)dataArray[6];
+            this.Ench_val = (int)dataArray[7];
+            this.Trait_type = (string)dataArray[8];
+            this.Char_id = (int)dataArray[9];
         }
 
         private object[] Listify(params object[] objectsToArray)
@@ -72,16 +75,16 @@ namespace ESOCrafter
             {
                 equipIDCheck = "No Database id, item not stored!";
             }
-            return "Database id is: " + equipIDCheck +
-                "\nEquip type is: " + Type +
+            return "Equips DB id is: " + equipIDCheck +
+                "\nEquip is of " + Equip_q + " quality " +
+                "\nEquip type is: " + Equip_type +
                 "\nEquip has attribute of: " + Attribute_val + 
                 "\nEquip level is: " + Item_level +
                 "\nEquip is worth " + Coin_val + " coins" +
                 "\nEquip is enchanted with: " + Ench_type +
                 "\nEnchantment attribute value is: " + Ench_val +
                 "\nTrait of equip is: " + Trait_type +
-                "\nTrait value of equip is: " + Trait_val + 
-                "\nEquip is presently in inventory of char#" + Char_type;
+                "\nEquip is presently in inventory of char_id: " + Char_id;
         }
     }
 }

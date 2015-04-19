@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Research.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,7 +79,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Metadata.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="RefocusCutSnippets.cs" />
     <Compile Include="Logic.cs" />
     <Compile Include="Equippable.cs" />
     <Compile Include="CustomCommands.cs" />

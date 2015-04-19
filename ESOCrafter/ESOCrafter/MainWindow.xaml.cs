@@ -33,10 +33,19 @@ namespace ESOCrafter
             The_text.Text = l.SQLiteTest();
         }
 
-        private void Clr_Db_Click(object sender, RoutedEventArgs e)
+        private void DiscardDatabase_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            l.ClrDb();
-            ClearText();
+            MessageBoxResult confirmDiscardDB = MessageBox.Show("Are you sure you want to discard the database?\n\nWARNING: This can not be undone!", "Confirm Database Discard", MessageBoxButton.YesNo);
+            if (confirmDiscardDB == MessageBoxResult.Yes)
+            {
+                l.DiscardDB();
+                ClearText();
+            }
+        }
+
+        private void DiscardDatabase_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
 
         private void TestCommand_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -45,46 +54,6 @@ namespace ESOCrafter
         }
 
         private void TestCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            MessageBox.Show("New command executed, next up: new file dialog!"); //DEBUG
-            //TODO there might not be a new file dialog, can maybe use save file dialog?
-        }
-
-        private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            //string loadPath;
-            MessageBoxResult loadConfirm = MessageBox.Show("LOCALIZE load file confirmation prompt", "LOCALIZE Confirm file load", MessageBoxButton.YesNo);
-            if (loadConfirm == MessageBoxResult.Yes)
-            {
-                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-                dlg.InitialDirectory = "";
-                dlg.DefaultExt = ".txt"; //TODO change to capsule format when complete!
-                dlg.Filter = "Text documents (.txt)|*.txt"; //TODO adapt for capsule format when complete!
-                dlg.Multiselect = false;
-                bool? result = dlg.ShowDialog();
-                if (result == true)
-                {
-                    if (l.IsFileLoaded == true)
-                    {
-                        l.CloseDBFile();
-                    }
-                    l.LoadDBFile(dlg.FileName);
-                    //loadPath = dlg.FileName;
-                }
-            }
-        }
-
-        private void OpenCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }

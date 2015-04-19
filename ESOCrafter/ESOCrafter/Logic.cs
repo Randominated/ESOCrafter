@@ -12,44 +12,9 @@ namespace ESOCrafter
     /// </summary>
     class Logic
     {
-        public bool IsFileLoaded { get; private set; }
-        public string DBPackageLocation { get; private set; }
-        public bool IsDBInMemory { get; private set; }
-        //private SQLiteConnection DBConnection;
 
         public Logic()
         {
-            IsFileLoaded = false;
-            //TODO load metadata file. Meta file contains path(s) to database files.
-        }
-
-        private int CreateDBFile(string path, string filename)
-        {
-            //TODO let user select whether to create database file or keep it in memory
-            //TODO unsure what variables can be gotten from new file dialog. Adapt accordingly!
-            //TODO There is no new file dialog, use save file dialog instead!
-            return -1;
-        }
-
-        public int LoadDBFile(string path)
-        {
-            //TODO use load dialog!
-            //TODO notes from CreateDBFile apply here!
-            Console.Write(path);
-            return -1;
-        }
-
-        private int SaveDBFile(string path, string filename)
-        {
-            //TODO only used with in-memory databases, inactive otherwise
-            return -1;
-
-        }
-
-        public int CloseDBFile()
-        {
-            //TODO use method to close file gracefully, not sure if neccessary
-            return -1;
         }
 
         private void initDBConnection(string file)
@@ -66,7 +31,6 @@ namespace ESOCrafter
         public string TEMPCreateDB()
         {
             //TODO needs total refactor, this revision is only for testing segmentation of the SQLite example used to learn from.
-            //TODO: This string is supposed to load from a packaged SQL file. Packaged/zipped to make sure that the SQL corresponds to the .db3 file. Package includes .meta file.
             string createTableQuery = @"-- tables
                                         -- Table: characters
                                         CREATE TABLE characters (
@@ -80,6 +44,7 @@ namespace ESOCrafter
                                         -- Table: equips
                                         CREATE TABLE equips (
                                             equip_id integer NOT NULL  PRIMARY KEY AUTOINCREMENT,
+                                            equip_q varchar(8) NOT NULL,
                                             type varchar(255) NOT NULL,
                                             attribute_val integer NOT NULL,
                                             item_level integer NOT NULL,
@@ -87,7 +52,6 @@ namespace ESOCrafter
                                             ench_type varchar(255) NOT NULL,
                                             ench_val integer NOT NULL,
                                             trait_type varchar(255) NOT NULL,
-                                            trait_val integer NOT NULL,
                                             characters_char_id integer NOT NULL,
                                             FOREIGN KEY (characters_char_id) REFERENCES characters (char_id)
                                         );
@@ -107,13 +71,6 @@ namespace ESOCrafter
                                         CREATE VIEW v_char_inventory AS
                                         SELECT * FROM equips;
                                         -- End of file.";
-
-            DBPackageLocation = "testDB.db3";
-            initDBConnection(DBPackageLocation);
-            //using (DBConnection) {
-            //
-            //}
-
             return "";
         }
 
@@ -172,7 +129,7 @@ namespace ESOCrafter
             //TODO needs a way to check loaded db3 file for compatibility with get methods. If incompatible block only reads until tables are made?
         }
 
-        public void ClrDb()
+        public void DiscardDB()
         {
             System.Data.SQLite.SQLiteConnection.CreateFile("databaseFile.db3");
             //TODO rewrite, silent newfile is asshole move. New file or delete button?
@@ -181,7 +138,7 @@ namespace ESOCrafter
         public string Eq_test()
         {
             //testing internal methods for Equippable class. Only debug use. Cleanup after.
-            Equippable e = new Equippable("dagger", 1337, 666, 9999, "Murder damage", 9000, "Perfect", 7, 0);
+            Equippable e = new Equippable("yellow", "dagger", 1337, 666, 9999, "Murder damage", 9000, "Perfect", 0);
             return "" + e;
         }
     }

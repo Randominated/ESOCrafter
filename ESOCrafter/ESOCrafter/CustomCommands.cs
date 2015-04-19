@@ -10,9 +10,20 @@ namespace ESOCrafter
 {
     public static class CustomCommands
     {
+        public static readonly RoutedUICommand DiscardDatabase = new RoutedUICommand
+            (
+                "Command for discarding and overwriting database file",
+                "DiscardDatabase",
+                typeof(CustomCommands),
+                new InputGestureCollection()
+                {
+                    new KeyGesture(Key.D, ModifierKeys.Alt)
+                }
+            );
+
         public static readonly RoutedUICommand TestCommand = new RoutedUICommand
             (
-                "TestCommand",
+                "A quick test for making custom commands",
                 "TestCommand",
                 typeof(CustomCommands),
                 new InputGestureCollection()
