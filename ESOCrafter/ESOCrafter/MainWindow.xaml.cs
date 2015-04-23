@@ -22,15 +22,22 @@ namespace ESOCrafter
     public partial class MainWindow : Window
     {
         Logic l;
+        AddItemDialog addItemDialog;
         public MainWindow()
         {
             InitializeComponent();
             l = new Logic();
+            addItemDialog = new AddItemDialog();
         }
 
         private void A_Button_Click(object sender, RoutedEventArgs e)
         {
             The_text.Text = l.SQLiteTest();
+        }
+        
+        private void AddItem_Click(object sender, RoutedEventArgs e)
+        {
+            addItemDialog.Show();
         }
 
         private void DiscardDatabase_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -72,5 +79,7 @@ namespace ESOCrafter
         {
             The_text.Text = "";
         }
+
+
     }
 }
