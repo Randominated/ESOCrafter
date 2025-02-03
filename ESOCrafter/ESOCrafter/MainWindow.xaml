@@ -1,0 +1,44 @@
+﻿<Window x:Class="ESOCrafter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:self="clr-namespace:ESOCrafter"
+        Title="MainWindow" Width="800" Height="600" >
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommand_Executed" CanExecute="CloseCommand_CanExecute" />
+        <CommandBinding Command="self:CustomCommands.TestCommand" Executed="TestCommand_Executed" CanExecute="TestCommand_CanExecute"/>
+        <CommandBinding Command="self:CustomCommands.DiscardDatabase" Executed="DiscardDatabase_Executed" CanExecute="DiscardDatabase_CanExecute"/>
+    </Window.CommandBindings>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" IsMainMenu="True">
+            <MenuItem Header="_File">
+                <MenuItem Header="Discard DB File" Command="self:CustomCommands.DiscardDatabase"/>
+                <MenuItem Header="_Close" Command="Close"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About"/>
+                <MenuItem Header="_Test!" Command="self:CustomCommands.TestCommand"/>
+            </MenuItem>
+        </Menu>
+        <TabControl Name="Tabbed">
+            <TabItem Header="Tabtest">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Name="AddItem" Grid.Row="0" Grid.Column="0" Click="AddItem_Click">Add item to DB</Button>
+                    <Button Name="A_Button" Grid.Row="1" Click="A_Button_Click">DB Text dump</Button>
+                    <Button Name="Clr_Db" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Command="self:CustomCommands.DiscardDatabase">Discard DB</Button>
+                    <TextBlock Name="The_text" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="AnotherTest"/>
+        </TabControl>
+    </DockPanel>
+</Window>
